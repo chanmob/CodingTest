@@ -1,0 +1,27 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+arr = list(map(int, input().split()))
+
+before = 0
+cnt = 1
+
+battery = 0
+
+for i in arr:
+  if i == before:
+    cnt += 1
+    battery += 2 ** cnt
+  else:
+    battery += 2
+    before = i
+    cnt = 1
+
+  if battery >= 100:
+    battery = 0
+    before = 0
+    cnt = 1
+
+print(battery)
