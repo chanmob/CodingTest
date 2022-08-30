@@ -1,0 +1,14 @@
+import sys
+import itertools
+
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+
+arr = list(map(int, input().split()))
+arr = (sorted(arr))
+
+nPr = itertools.permutations(arr, m)
+nPr = sorted(set(nPr))
+for i in nPr:
+  print(*i)
