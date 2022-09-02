@@ -1,0 +1,23 @@
+import sys
+
+input = sys.stdin.readline
+
+N, M = map(int, input().split())
+
+words = [input().rstrip() for _ in range(N)]
+pre =  [input().rstrip() for _ in range(M)]
+
+words.sort()
+pre.sort()
+
+idx = 0
+cnt = 0
+
+for p in pre:
+  for i in range(idx, len(words)):
+    if words[i].startswith(p):
+      cnt += 1
+      idx = i
+      break
+
+print(cnt)
