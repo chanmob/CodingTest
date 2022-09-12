@@ -1,0 +1,39 @@
+import sys
+sys.setrecursionlimit(int(1e6))
+
+input = sys.stdin.readline
+
+n, m, r = map(int, input().split())
+
+visited = [False] * (n + 1)
+
+node = [[] for _ in range(n + 1)]
+
+for i in range(m):
+  s, e = map(int, input().split())
+  node[s].append(e)
+  node[e].append(s)
+
+for i in range(len(node)):
+  node[i] = sorted(node[i])
+
+result = [0] * (n + 1)
+
+result[r] = 1
+time = 1
+
+def dfs(idx):
+  global time
+  
+  visited[idx] = True
+  sortnode = sorted(node[idx])
+  for i in sortnode:
+    if visited[i] == False:
+      time += 1
+      result[i] = time
+      dfs(i)     
+
+dfs(r)
+
+for i in range(1, len(result)):
+  print(result[i])
