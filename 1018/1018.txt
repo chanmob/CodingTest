@@ -1,0 +1,35 @@
+import sys
+
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+
+arr = []
+
+for i in range(n):
+    arr.append(input().rstrip())
+
+result = []
+
+for x in range(n - 7):
+    for y in range(m - 7):
+        w = 0
+        b = 0
+        
+        for i in range(x, x + 8):
+            for j in range(y, y + 8):
+                if (i + j) % 2 == 0:
+                    if arr[i][j] != 'W':
+                        b += 1
+                    elif arr[i][j] != 'B':
+                        w += 1
+                else:
+                    if arr[i][j] != 'W':
+                        w += 1
+                    elif arr[i][j] != 'B':
+                        b += 1
+                        
+        result.append(min(w, b))
+        
+print(min(result))
+        
