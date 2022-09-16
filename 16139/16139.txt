@@ -12,5 +12,6 @@ for _ in range(int(input())):
     c,start,end = list(input().split())
     start,end = map(int,[start,end])
     if start == 0:
+        print(arr[end][ord(c)-97])
     else:
         print(arr[end][ord(c)-97]-arr[start-1][ord(c)-97])
