@@ -1,0 +1,38 @@
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+
+n = int(input())
+stack = deque([])
+
+for i in range(n):
+  command = input().rstrip()
+
+  commands = command.split()
+
+  if commands[0] == "push":
+    stack.append(commands[1])
+  elif commands[0] == "pop":
+    if len(stack) != 0:
+      print(stack.popleft())
+    else:
+      print(-1)
+  elif commands[0] == "size":
+    print(len(stack))
+  elif commands[0] == "empty":
+    if len(stack) != 0:
+      print(0)
+    else:
+      print(1)
+  elif commands[0] == "front":
+    if len(stack) != 0:
+      print(stack[0])
+    else:
+      print(-1)
+  elif commands[0] == "back":
+    if len(stack) != 0:
+      print(stack[-1])
+    else:
+      print(-1)
+      
