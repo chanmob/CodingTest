@@ -1,0 +1,43 @@
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+
+n = int(input())
+
+for i in range(n):
+  commands = input().rstrip()
+  len_arr = int(input())
+  arr = input().rstrip()
+  arr = arr[1:-1]
+  dq = deque(arr.split(','))
+  flag = 0
+  error = False
+
+  if len_arr == 0:
+    dq = deque()
+  
+  for c in commands:
+    if c == 'R':
+      flag += 1
+    elif c == 'D':
+      if len(dq) == 0:
+        error = True
+        print('error')
+        break
+      else:
+        if flag % 2 == 0:
+          dq.popleft()
+        else:
+          dq.pop()
+
+  if error:
+    continue
+  else:
+    if flag % 2 == 0:
+      print("[" + ",".join(dq) + "]")
+    else:
+      dq.reverse()
+      print("[" + ",".join(dq) + "]")
+        
+    
