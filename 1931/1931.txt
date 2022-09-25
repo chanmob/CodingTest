@@ -1,0 +1,24 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+
+rooms = []
+
+for i in range(n):
+  a, b = map(int, input().split())
+  rooms.append([a, b])
+
+rooms.sort(key = lambda x : x[0])
+rooms.sort(key = lambda x : x[1])
+
+result = 1
+end_time = rooms[0][1]
+
+for i in range(1, n):
+  if rooms[i][0] >= end_time:
+    result += 1
+    end_time = rooms[i][1]
+
+print(result)
