@@ -1,0 +1,21 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+arrs = list(map(int, input().split()))
+
+m = int(input())
+arrs2 = list(map (int, input().split()))
+
+dict = {} 
+for i in range(len(arrs)):
+  dict[arrs[i]] = 0 
+
+result = []
+
+for i in arrs2:
+  if i in dict:
+    print(1, end = ' ')
+  else:
+    print(0, end = ' ')
