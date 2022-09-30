@@ -1,0 +1,16 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+
+s = list(input().rstrip())
+s_len = len(s)
+
+for i in range(n - 1):
+  s2 = list(input().rstrip())
+  for j in range(s_len):
+    if s[j] != s2[j]:
+      s[j] = '?'
+
+print("".join(s))
