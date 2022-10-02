@@ -1,0 +1,20 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+
+info = set()
+
+for i in range(n):
+  s = input().rstrip()
+  s = s.split()
+  if s[1] == "enter":
+    info.add(s[0])
+  elif s[1] == "leave":
+    info.remove(s[0])
+
+info = sorted(info, reverse=True)
+
+for i in info:
+  print(i)
