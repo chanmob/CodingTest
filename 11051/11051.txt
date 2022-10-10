@@ -1,0 +1,16 @@
+import sys
+
+sys.setrecursionlimit(10**6)
+
+input = sys.stdin.readline
+
+def factorial(n):
+  if(n > 1):
+    return n * factorial(n - 1)
+  else:
+    return 1
+
+n, m = map(int, input().split())
+result = factorial(n) // (factorial(m) * factorial(n - m))
+
+print(result % 10007)
