@@ -1,0 +1,26 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+arrs = list(map(int, input().split()))
+total = int(input())
+
+start = 0
+end = max(arrs)
+
+while start <= end:
+  mid = (start + end) // 2
+  num = 0
+  for i in arrs:
+    if i >= mid:
+      num += mid
+    else:
+      num += i
+  if num <= total:
+    start = mid + 1
+  else:
+    end = mid - 1
+    
+print(end)
+  
