@@ -1,0 +1,17 @@
+import sys
+
+input = sys.stdin.readline
+
+bowls = input().rstrip()
+
+result = 10
+start = bowls[0]
+
+for b in range(1, len(bowls)):
+  if start == bowls[b]:
+    result += 5
+  else:
+    result += 10
+    start = bowls[b]
+
+print(result)
