@@ -1,0 +1,19 @@
+import sys
+import re
+
+input=sys.stdin.readline
+
+t = int(input())
+result = []
+
+for _ in range(t):
+  temp = input()
+  numbers = re.compile('[0-9]+')
+  m = numbers.findall(temp)
+
+  for i in m:
+    result.append(int(i))    
+    
+result.sort()
+for i in result:
+  print(i)
