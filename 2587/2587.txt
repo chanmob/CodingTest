@@ -1,0 +1,13 @@
+import sys
+
+input=sys.stdin.readline
+
+arrs = []
+
+for i in range(5):
+  arrs.append(int(input()))
+
+arrs.sort()
+
+print(sum(arrs) // 5)
+print(arrs[2])
