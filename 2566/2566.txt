@@ -1,0 +1,21 @@
+import sys
+
+input = sys.stdin.readline
+
+arr = []
+
+result = 0
+row = 0
+col = 0
+
+for i in range(9):
+    arr.append(list(map(int, input().split())))
+
+for i in range(9):
+    if max(arr[i]) > result:
+        result = max(arr[i])
+        row = i
+        col = arr[i].index(result)
+
+print(result)
+print(row + 1, col + 1)
