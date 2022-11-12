@@ -1,0 +1,7 @@
+import sys
+
+input = sys.stdin.readline
+
+x, y = map(str, input().split())
+result = str(int(x[::-1]) + int(y[::-1]))
+print(int(result[::-1]))
