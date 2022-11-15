@@ -1,0 +1,14 @@
+import sys
+
+input = sys.stdin.readline
+
+n = input().rstrip()
+len_n = len(n)
+
+result = 0
+
+for _ in range(len_n):
+  result += int(n)
+  n = n[1:len_n] + n[0]
+
+print(result)
