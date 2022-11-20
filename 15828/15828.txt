@@ -1,0 +1,21 @@
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+
+n = int(input())
+deque = deque()
+
+while(True):
+  k = int(input())
+  if k == -1:
+    break
+  elif k != 0 and len(deque) < n:
+    deque.append(k)
+  elif k == 0:
+    deque.popleft()
+
+if deque:
+  print(*deque)
+else:
+  print('empty')
