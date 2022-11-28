@@ -1,0 +1,28 @@
+import sys
+
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+
+girl_group = {}
+
+for i in range(n):
+  group_name = input().rstrip()
+  group_cnt = int(input())
+  group_list = []
+  for i in range(group_cnt):
+    group_list.append(input().rstrip())
+  girl_group[group_name] = group_list
+
+for i in range(m):
+  find_name = input().rstrip()
+  check = int(input())
+
+  if check == 0:
+    sort_name = sorted(girl_group[find_name])
+    for g in sort_name:
+      print(g)
+  else:
+    for key in list(girl_group.keys()):
+      if find_name in girl_group[key]:
+        print(key)
