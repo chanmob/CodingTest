@@ -1,0 +1,20 @@
+import sys
+sys.setrecursionlimit(3000000)
+
+def dfs(y, x):
+  graph[y][x] = 0
+  for dy, dx in d:
+    new_y, new_x = y+dy, x+dx
+    if (0 <= new_y < m) and (0 <= new_x < n) and graph[new_y][new_x] == 1:
+      dfs(new_y, new_x)
+
+m, n = map(int, input().split())
+graph = [list(map(int, input().split())) for _ in range(m)]
+d = [(-1, -1), (-1, 1), (1, -1), (1, 1), (-1, 0), (1, 0), (0, -1), (0, 1)]
+cnt = 0
+for i in range(m):
+  for j in range(n):
+    if graph[i][j] == 1:
+      dfs(i, j)
+      cnt += 1
+print(cnt)
