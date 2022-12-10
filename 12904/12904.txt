@@ -1,0 +1,23 @@
+import sys
+
+input = sys.stdin.readline
+
+s = list(input().rstrip())
+t = list(input().rstrip())
+
+can_swtich = False
+
+while t:
+  if t[-1] == 'A':
+    t.pop()
+  else:
+    t.pop()
+    t.reverse()
+  if s == t:
+    can_swtich = True
+    break
+
+if can_swtich:
+  print(1)
+else:
+  print(0)
