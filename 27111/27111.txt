@@ -1,0 +1,24 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+records = set()
+
+omission = 0
+
+for i in range(n):
+  people, inout = map(int, input().split())
+  if inout == 1:
+    if people in records:
+      omission += 1
+    else:
+      records.add(people)
+  else:
+    if people in records:
+      records.remove(people)
+    else:
+      omission += 1
+
+omission += len(records)
+print(omission)
