@@ -1,0 +1,30 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+arr = list(map(int, input().split()))
+arr.sort()
+
+start = 0
+end = n - 1
+
+min = sys.maxsize
+arrs = [0, 0]
+
+while start < end:
+  sum = arr[start] + arr[end]
+
+  if abs(sum) < min:
+    arrs[0] = arr[start]
+    arrs[1] = arr[end]
+    min = abs(sum)
+
+  if sum > 0:
+    end -= 1
+  elif sum < 0:
+    start +=1
+  else:
+    break
+
+print(arrs[0], arrs[1])
