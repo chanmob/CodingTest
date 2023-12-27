@@ -1,0 +1,23 @@
+def solution(keymap, targets):
+    answer = []
+    
+    for target in targets:
+        sum = 0
+        for t in target:
+            exist = False
+            map = 101
+            for key in keymap:
+                if t in key:
+                    exist = True
+                    m = key.index(t)
+                    map = min(m, map)
+            if exist == False:
+                answer.append(-1)
+                break
+            
+            sum += map + 1
+        
+        if exist == True:
+            answer.append(sum)
+        
+    return answer
