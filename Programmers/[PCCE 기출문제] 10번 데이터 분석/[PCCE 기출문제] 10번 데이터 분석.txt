@@ -1,0 +1,7 @@
+def solution(data, ext, val_ext, sort_by):
+    s = {'code' : 0, 'date' : 1, 'maximum' : 2, 'remain' : 3}
+    idx = s[ext]
+    data = [d for d in data if d[idx] < val_ext]        
+    sort_idx = s[sort_by]
+    data.sort(key = lambda x:x[sort_idx])
+    return data
