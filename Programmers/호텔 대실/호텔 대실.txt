@@ -1,0 +1,22 @@
+def solution(book_time):
+    
+    def changeTime(time):
+        return int(time[0:2]) * 60 + int(time[3:])
+
+    book_times = sorted([[changeTime(i[0]), changeTime(i[1]) + 10] for i in book_time])
+    
+    rooms = []
+    
+    for book in book_times:
+        vacancy = False
+                
+        for idx in range(len(rooms)):
+            if book[0] >= rooms[idx]:
+                rooms[idx] = book[-1]
+                vacancy = True
+                break
+        
+        if vacancy == False:
+            rooms.append(book[-1])
+
+    return len(rooms)
