@@ -1,0 +1,15 @@
+def solution(cards1, cards2, goal):
+    answer = "Yes" 
+    
+    for word in goal:
+        if len(cards1) > 0 and word == cards1[0]:
+            del(cards1[0])
+            continue
+        elif len(cards2) > 0 and word == cards2[0]:
+            del(cards2[0])
+            continue
+        else:
+            answer = "No"
+            break
+    
+    return answer
