@@ -1,0 +1,13 @@
+def solution(t, p):
+    answer = 0
+    
+    len_t = len(t)
+    len_p = len(p)
+    p = int(p)
+    
+    for i in range((len_t - len_p) + 1):
+        check = int(t[i:i+len_p])
+        if check <= p:
+            answer += 1
+    
+    return answer
