@@ -1,0 +1,66 @@
+def solution(today, terms, privacies):
+    
+    def changeDay(date):
+        days = date.split('.')
+        d = ""
+        for day in days:
+            d += day
+        return int(d)
+    
+    def addDay(date, n):
+        days = list(map(int, date.split('.')))
+        n = int(n)
+        
+        if n >= 12:
+            am = n // 12
+            days[0] += am
+            n -= am * 12
+            
+        days[1] += n
+        
+        if(days[1] > 12):
+            am = days[1] // 12
+            ad = days[1] % 12
+        
+            days[0] += am
+            days[1] = ad
+        
+        if days[1] == 0:
+            days[1] = 12
+        
+        if days[2] == 1:
+            days[2] = 28
+            days[1] -= 1
+            if days[1] == 0:
+                days[0] -= 1
+                days[1] = 12
+        else:
+            days[2] -= 1
+                
+        d = str(days[0])
+        d += str(days[1]).zfill(2)
+        d += str(days[2]).zfill(2)
+        return d
+    
+    
+    term_info = {}
+    
+    for term in terms:
+        t = term.split()
+        term_info[t[0]] = t[1]
+    
+    answer = []
+    t = changeDay(today)
+    
+    for i in range(len(privacies)):
+        day, term_type = privacies[i].split()
+        d = addDay(day, term_info[term_type])
+        d = changeDay(d)
+        print(i+1)
+        print(t)
+        print(d)
+        print()
+        if t > d:
+            answer.append(i + 1)
+    
+    return answer
