@@ -1,0 +1,12 @@
+def solution(food):
+    answer = ''
+    f = ''
+    
+    for i in range(1, len(food)):
+        f += str(i) * (food[i] // 2)
+    
+    answer += f
+    answer += '0'
+    answer += f[::-1]
+    
+    return answer
