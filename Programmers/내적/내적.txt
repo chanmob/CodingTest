@@ -1,0 +1,8 @@
+def solution(a, b):
+    def dot(a, b):
+        value = 0
+        for i in range(len(a)):
+            value += a[i] * b[i]
+        return value
+    
+    return dot(a, b)
