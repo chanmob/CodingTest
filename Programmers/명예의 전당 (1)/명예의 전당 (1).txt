@@ -1,0 +1,19 @@
+def solution(k, score):
+    answer = []
+    hof = []
+    
+    for s in score:
+        if len(hof) < k:
+            hof.append(s)
+            hof.sort()
+            answer.append(hof[0])
+            continue
+        elif hof[0] <= s:
+            del hof[0]
+            hof.append(s)
+            hof.sort()
+            answer.append(hof[0])
+        else:
+            answer.append(hof[0])
+    
+    return answer
