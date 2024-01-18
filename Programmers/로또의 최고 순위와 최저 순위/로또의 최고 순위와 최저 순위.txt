@@ -1,0 +1,13 @@
+def solution(lottos, win_nums):
+    rank = [6,6,5,4,3,2,1]
+
+    zero_cnt = 0
+    ans = 0
+    
+    for l in lottos:
+        if l == 0:
+            zero_cnt += 1
+        elif l in win_nums:
+            ans += 1
+            
+    return rank[zero_cnt + ans], rank[ans]
