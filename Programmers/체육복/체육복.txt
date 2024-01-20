@@ -1,0 +1,22 @@
+def solution(n, lost, reserve):
+    answer = n - len(lost)
+    
+    myself = [l for l in lost if l in reserve]   
+    
+    for m in myself:
+        answer += 1
+        lost.remove(m)
+        reserve.remove(m)
+        
+    lost.sort()
+    reserve.sort()
+    
+    for l in lost:
+        if l - 1 in reserve:
+            answer += 1
+            reserve.remove(l - 1)
+        elif l + 1 in reserve:
+            answer += 1
+            reserve.remove(l + 1)
+    
+    return answer
