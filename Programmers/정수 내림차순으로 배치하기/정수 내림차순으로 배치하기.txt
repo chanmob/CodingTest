@@ -1,0 +1,12 @@
+def solution(n):
+    answer = ""
+    
+    res = [int(x) for x in str(n)]
+    res.sort(reverse = True)
+    
+    for i in res:
+        answer += str(i)
+        
+    answer = int(answer)
+    
+    return answer
