@@ -1,0 +1,11 @@
+def solution(n):
+    def CheckOne(x):
+        binary = bin(x)
+        cnt = binary.count('1')
+        return cnt
+    
+    num = CheckOne(n)
+    while True:
+        n += 1
+        if int(CheckOne(n)) == num:
+            return n
