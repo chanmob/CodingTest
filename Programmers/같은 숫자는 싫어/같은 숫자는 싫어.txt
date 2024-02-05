@@ -1,0 +1,8 @@
+def solution(arr):
+    answer = []
+    before = -1
+    for i in arr:
+        if i != before:
+            before = i
+            answer.append(i)
+    return answer
