@@ -1,0 +1,11 @@
+def solution(x):
+    str_x = str(x)
+    change_x = 0
+    
+    for i in str_x:
+        change_x += int(i)
+    
+    if x % change_x == 0:
+        return True
+    else:
+        return False
