@@ -1,0 +1,4 @@
+def solution(nums):
+    s = len(nums) // 2
+    nums = set(nums)
+    return min(s, len(nums))
