@@ -1,0 +1,30 @@
+from itertools import permutations
+
+def solution(numbers):
+    
+    def isPrime(num):
+        if num < 2:
+            return False
+        for i in range(2, num):
+            if num % i == 0:
+                return False
+        return True
+    
+    numbers = list(map(int, numbers))
+    permu = set()
+
+    for i in range(0, len(numbers)):
+        temp = list(permutations(numbers, i + 1))
+        
+        for t in temp:
+            permu_str = ''.join(map(str, t))
+            permu_int = int(permu_str)
+            permu.add(permu_int)
+    
+    answer = 0
+    
+    for p in permu:
+        if isPrime(p):
+            answer += 1
+    
+    return answer
