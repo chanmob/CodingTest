@@ -1,0 +1,19 @@
+def solution(operations):
+    answer = []
+    for oper in operations:
+        o = oper.split()
+        if o[0] == 'I' :
+            answer.append(int(o[1]))
+        elif o[0] == 'D':
+            if len(answer) == 0:
+                continue
+            if o[1] == '1':
+                answer.pop(-1)
+            else:
+                answer.pop(0)
+        answer.sort()
+        
+    if len(answer) == 0:
+        return [0, 0]
+    else:
+        return [answer[-1], answer[0]]
