@@ -1,0 +1,28 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+
+students = {}
+
+for i in range(n):
+    info = input().rstrip()
+    name, ring = info.split()
+    if ring != '-':
+        if ring in students.keys():
+            students[ring].append(name)
+        else:
+            students[ring] = [name]
+
+answer = 0
+couple = []
+
+for k in students.keys():
+    if len(students[k]) == 2:
+        answer += 1
+        couple.append(students[k])
+
+print(answer)
+if answer != 0:
+    for c in couple:
+        print(*c)
