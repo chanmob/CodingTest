@@ -1,0 +1,39 @@
+import sys
+
+def is_on_same_face(P):
+    x_set = {P[0][0], P[1][0], P[2][0], P[3][0]}
+    y_set = {P[0][1], P[1][1], P[2][1], P[3][1]}
+    z_set = {P[0][2], P[1][2], P[2][2], P[3][2]}
+    return len(x_set) == 1 or len(y_set) == 1 or len(z_set) == 1
+
+input = sys.stdin.readline
+
+t = int(input())
+data = []
+
+for i in range(t):
+    d = list(map(int, input().split()))
+    data.append(d)
+
+points = [
+    (0, 0, 0),
+    (0, 0, 1),
+    (0, 1, 0),
+    (0, 1, 1),
+    (1, 0, 0),
+    (1, 0, 1),
+    (1, 1, 0),
+    (1, 1, 1)
+]
+
+results = []
+
+for i in range(t):
+    P = [points[data[i][0]], points[data[i][1]], points[data[i][2]], points[data[i][3]]]
+    if is_on_same_face(P):
+        results.append("YES")
+    else:
+        results.append("NO")
+
+for result in results:
+    print(result)
