@@ -1,0 +1,40 @@
+def count_subsets(weights, C):
+    from itertools import combinations
+    
+    def get_subset_sums(arr):
+        subset_sums = []
+        for i in range(len(arr) + 1):
+            for combo in combinations(arr, i):
+                subset_sums.append(sum(combo))
+        return subset_sums
+    
+    n = len(weights)
+    half = n // 2
+    
+    left_part = weights[:half]
+    right_part = weights[half:]
+    
+    left_sums = get_subset_sums(left_part)
+    right_sums = get_subset_sums(right_part)
+    
+    right_sums.sort()
+    
+    count = 0
+    for left_sum in left_sums:
+        if left_sum <= C:
+            remaining_capacity = C - left_sum
+            low, high = 0, len(right_sums)
+            while low < high:
+                mid = (low + high) // 2
+                if right_sums[mid] <= remaining_capacity:
+                    low = mid + 1
+                else:
+                    high = mid
+            count += low
+    
+    return count
+
+n, C = map(int, input().split())
+weights = list(map(int, input().split()))
+
+print(count_subsets(weights, C))
