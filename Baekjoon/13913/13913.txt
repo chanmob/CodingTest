@@ -1,0 +1,37 @@
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+
+def find_sibling(N, K):
+    queue = deque([(N, 0)])
+    visited = set()
+    path = {}
+    
+    while queue:
+        pos, time = queue.popleft()
+        
+        if pos == K:
+            return time, path
+        
+        if pos * 2 not in visited and 0 <= pos * 2 <= 100000:
+            queue.append((pos * 2, time + 1))
+            visited.add(pos * 2)
+            path[pos * 2] = pos
+        
+        for next_pos in (pos - 1, pos + 1):
+            if next_pos not in visited and 0 <= next_pos <= 100000:
+                queue.append((next_pos, time + 1))
+                visited.add(next_pos)
+                path[next_pos] = pos
+
+N, K = map(int, input().split())
+
+time, path = find_sibling(N, K)
+
+print(time)
+result = [K]
+while K != N:
+    K = path[K]
+    result.append(K)
+print(*result[::-1])
