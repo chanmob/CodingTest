@@ -1,0 +1,22 @@
+import sys
+
+input = sys.stdin.readline
+
+str1 = [''] + list(input().rstrip())
+str2 = [''] + list(input().rstrip())
+
+len_str1 = len(str1)
+len_str2 = len(str2)
+
+array = [['' for _ in range(len_str1)] for _ in range(len_str2)]
+
+for i in range(1, len_str2):
+    for j in range(1, len_str1):
+        if str1[j] == str2[i]:
+            array[i][j] = array[i - 1][j - 1] + str1[j]
+        else:
+            array[i][j] = array[i][j - 1] if len(array[i][j - 1]) > len(array[i - 1][j]) else array[i - 1][j]
+            
+result = array[-1][-1]
+print(len(result))
+print(result)
