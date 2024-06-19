@@ -1,0 +1,32 @@
+from collections import deque
+import sys
+
+input = sys.stdin.readline
+
+N, M = map(int, input().split())
+arrays = []
+
+for _ in range(N):
+    arrays.append(list(map(int, input().rstrip())))
+    
+move_x = [1, -1, 0, 0]
+move_y = [0, 0, 1, -1]
+
+def BFS(arrays, mx, my):
+    queue = deque()
+    queue.append((mx, my))
+    while queue:
+        x, y = queue.popleft()
+        for i in range(4):
+            nx = x + move_x[i]
+            ny = y + move_y[i]
+            if nx < 0 or nx >= M or ny < 0 or ny >= N:
+                continue
+            if arrays[ny][nx] == 0:
+                continue
+            if arrays[ny][nx] == 1:
+                arrays[ny][nx] = arrays[y][x] + 1
+                queue.append((nx, ny))
+    return arrays[N-1][M-1]
+    
+print(BFS(arrays, 0, 0))
