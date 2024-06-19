@@ -1,0 +1,56 @@
+from collections import deque
+import sys
+import copy
+
+input = sys.stdin.readline
+
+N, M = map(int, input().split())
+arrays = []
+
+for _ in range(N):
+    arrays.append(list(map(int, input().split())))
+
+move_x = [0, 0, 1, -1]
+move_y = [1, -1, 0, 0]
+
+def BFS():
+    queue = deque()
+    tmp_arrays = copy.deepcopy(arrays)
+    
+    for i in range(N):
+        for j in range(M):
+            if tmp_arrays[i][j] == 2:
+                queue.append((i, j))
+
+    while queue:
+        x, y = queue.popleft()
+        for i in range(4):
+            nx = x + move_x[i]
+            ny = y + move_y[i]
+            if nx < 0 or nx >= N or ny < 0 or ny >= M:
+                continue
+            if tmp_arrays[nx][ny] == 0:
+                tmp_arrays[nx][ny] = 2
+                queue.append((nx, ny))
+                
+    global answer
+    cnt = 0
+    for i in range(N):
+        cnt += tmp_arrays[i].count(0)
+    answer = max(answer, cnt)
+
+def CheckWall(cnt):
+    if cnt == 3:
+        BFS()
+        return
+    
+    for i in range(N):
+        for j in range(M):
+            if arrays[i][j] == 0:
+                arrays[i][j] = 1
+                CheckWall(cnt + 1)
+                arrays[i][j] = 0
+    
+answer = 0
+CheckWall(0)
+print(answer)
