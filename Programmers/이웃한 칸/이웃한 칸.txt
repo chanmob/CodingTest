@@ -1,0 +1,17 @@
+def solution(board, h, w):
+    answer = 0
+    color = board[h][w]
+    len_board = len(board)
+    
+    mx = [0, 0, 1, -1]
+    my = [1, -1, 0, 0]
+    
+    for i in range(4):
+        nx = h + mx[i]
+        ny = w + my[i]
+        
+        if 0 <= nx < len_board and 0 <= ny < len_board:
+            if color == board[nx][ny]:
+                answer += 1
+    
+    return answer
