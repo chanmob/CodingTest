@@ -1,0 +1,42 @@
+def solution(plans):
+    answer = []
+    len_plan = len(plans)
+    
+    for i in range(len_plan):
+        h, m = map(int, plans[i][1].split(':'))
+        new_m = h * 60 + m
+        plans[i][1] = new_m
+        plans[i][2] = int(plans[i][2])
+        
+    plans.sort(key = lambda x : x[1])
+    stack = []
+    
+    for i in range(len_plan):
+        if i == len_plan - 1:
+            stack.append(plans[i])
+            break
+        
+        sub, s, t = plans[i]
+        nsub, ns, nt = plans[i + 1]
+        
+        if s + t <= ns:
+            answer.append(sub)
+            temp_time = ns - (s + t)
+            
+            while temp_time > 0 and stack:
+                tsub, ts, tt = stack.pop()
+                if temp_time >= tt:
+                    answer.append(tsub)
+                    temp_time -= tt
+                else:
+                    stack.append([tsub, ts, tt - temp_time])
+                    temp_time = 0
+                    
+        else:
+            plans[i][2] = t - (ns - s)
+            stack.append(plans[i])
+            
+    while stack:
+        answer.append(stack.pop()[0])
+    
+    return answer
