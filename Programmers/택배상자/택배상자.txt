@@ -1,0 +1,17 @@
+def solution(order):
+    container = []
+    len_box = len(order)
+    idx = 0
+    num = 0
+    
+    while idx < len_box:
+        if order[idx] > num:
+            num += 1
+            container.append(num)
+        elif order[idx] == container[-1]:
+            container.pop()
+            idx += 1
+        else:
+            return idx
+    
+    return idx
