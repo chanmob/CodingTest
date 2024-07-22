@@ -1,0 +1,17 @@
+import sys
+
+input = sys.stdin.readline
+
+s = input().rstrip()
+r_s = s[::-1]
+
+result = True
+
+for i in range(len(s)):
+    if s[i] != r_s[i]:
+        result = False
+        
+if result:
+    print(1)
+else:
+    print(0)
