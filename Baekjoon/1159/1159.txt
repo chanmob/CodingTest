@@ -1,0 +1,26 @@
+import sys
+from collections import Counter
+
+input = sys.stdin.readline
+
+N = int(input())
+
+names = []
+
+for _ in range(N):
+    player = input().rstrip()[0]
+    names.append(player)
+
+names = Counter(names)    
+games = []
+
+
+for c in Counter(names).keys():
+    if names[c] >= 5:
+        games.append(c)
+    
+if len(games) > 0:
+    games.sort()
+    print(''.join(games))
+else:
+    print('PREDAJA')
