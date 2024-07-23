@@ -1,0 +1,27 @@
+def solution(dirs):
+    visited = []
+    start_x = 0
+    start_y = 0
+    answer = 0
+    
+    for dir in dirs:
+        mx = 0
+        my = 0
+        if dir == 'U':
+            my = 1
+        elif dir == 'D':
+            my = -1
+        elif dir == 'R':
+            mx = 1
+        elif dir == 'L':
+            mx = -1
+        nx = start_x + mx
+        ny = start_y + my
+        if -5 <= nx and nx <= 5 and -5 <= ny and ny <= 5:
+            if [start_x, start_y, nx, ny] not in visited and [nx, ny, start_x, start_y] not in visited:
+                answer += 1
+                visited.append([start_x, start_y, nx, ny])
+            start_x = nx
+            start_y = ny
+        
+    return answer
