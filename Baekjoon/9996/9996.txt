@@ -1,0 +1,15 @@
+import sys
+
+input = sys.stdin.readline
+
+N = int(input())
+se = input().rstrip().split('*')
+s = se[0]
+e = se[1]
+
+for _ in range(N):
+    check = input().rstrip()
+    if len(check) >= len(s) + len(e) and check.startswith(s) and check.endswith(e):
+        print('DA')
+    else:
+        print('NE')
