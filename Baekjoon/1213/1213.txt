@@ -1,0 +1,28 @@
+import sys
+
+input = sys.stdin.readline
+
+s = input().rstrip()
+alpha = {}
+for c in s:
+    if c in alpha:
+        alpha[c] += 1
+    else:
+        alpha[c] = 1
+
+odd_cnt = 0
+odd_str = ''
+
+for c in alpha:
+    if alpha[c] % 2 != 0:
+        odd_cnt += 1
+        odd_str = c
+        
+if odd_cnt >= 2:
+    print("I'm Sorry Hansoo")
+else:
+    result = ''
+    sort_alpha = sorted(alpha.keys())
+    for c in sort_alpha:
+        result += c * (alpha[c] // 2)
+    print(result + odd_str + result[::-1])
