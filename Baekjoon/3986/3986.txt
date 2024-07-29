@@ -1,0 +1,26 @@
+import sys
+
+input = sys.stdin.readline
+
+N = int(input())
+
+result = 0
+
+for _ in range(N):
+    s = input().rstrip()
+    stack = []
+    good = True
+
+    for c in s:
+        if stack:
+            if stack[-1] == c:
+                stack.pop()
+            else:
+                stack.append(c)
+        else:
+            stack.append(c)
+
+    if not stack:
+        result += 1
+
+print(result)
