@@ -1,0 +1,29 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+tree = []
+answer = ''
+for i in range(n):
+    tree.append(input().rstrip())
+
+def Devide(start, end, n):
+    global answer
+    color = tree[end][start]
+    
+    for i in range(start, start + n):
+        for j in range(end, end + n):
+            if tree[j][i] != color:
+                answer += '('
+                Devide(start, end, n // 2)
+                Devide(start + n // 2, end , n // 2)
+                Devide(start, end + n // 2, n // 2)
+                Devide(start + n // 2, end + n // 2, n // 2)
+                answer += ')'
+                return
+            
+    answer += color
+    
+Devide(0,0,n)
+print(answer)
