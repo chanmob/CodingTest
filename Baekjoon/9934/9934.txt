@@ -1,0 +1,23 @@
+import sys
+
+input = sys.stdin.readline
+
+k = int(input())
+arr = list(map(int, input().split()))
+
+result = [[] for _ in range(k)]
+
+def dfs(arr, depth):
+    mid = (len(arr) // 2)
+    result[depth].append(arr[mid])
+
+    if len(arr) == 1:
+        return
+
+    dfs(arr[:mid], depth+1)
+    dfs(arr[mid+1:], depth+1)
+
+dfs(arr, 0)
+
+for i in result:
+    print(*i)
