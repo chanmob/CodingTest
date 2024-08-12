@@ -1,0 +1,12 @@
+import sys
+import re
+
+input = sys.stdin.readline
+
+s = input().rstrip()
+s = re.sub("pi|ka|chu", "", s)
+
+if not s:
+    print('YES')
+else:
+    print('NO')
