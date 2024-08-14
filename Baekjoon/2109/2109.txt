@@ -1,0 +1,20 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+value = []
+dp = [0] * 10001
+for _ in range(n):
+    p, d = map(int, input().split())
+    value.append([p, d])
+    
+value.sort(key = lambda x : (-x[0], x[1]))
+for i in range(n):
+    np, nd = value[i][0], value[i][1]
+    for j in range(nd, 0, -1):
+        if dp[j] == 0:
+            dp[j] = np
+            break
+        
+print(sum(dp))
