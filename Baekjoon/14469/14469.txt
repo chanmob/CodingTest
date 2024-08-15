@@ -1,0 +1,18 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+cows = []
+for _ in range(n):
+    cows.append(list(map(int, input().split())))
+    
+cows.sort()
+time = cows[0][0] + cows[0][1]
+for i in range(1, n):
+    if time <= cows[i][0]:
+        time = cows[i][0] + cows[i][1]
+    else:
+        time += cows[i][1]
+        
+print(time)
