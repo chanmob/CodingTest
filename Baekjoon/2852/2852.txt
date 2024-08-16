@@ -1,0 +1,63 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+
+info = []
+
+for _ in range(n):
+    info.append(list(map(str, input().split())))
+
+score_1, score_2 = 0, 0
+total_1, total_2 = 0, 0
+win_1, win_2 = False, False
+
+time_s_1 = []
+time_s_2 = []
+time_e_1 = []
+time_e_2 = []
+
+for i in info:
+    if i[0] == '1':
+        score_1 += 1
+    elif i[0] == '2':
+        score_2 += 1
+
+    if score_1 > score_2 and win_1 == False:
+        win_1 = True
+        time_s_1.append(i[1])
+    elif score_2 > score_1 and win_2 == False:
+        win_2 = True
+        time_s_2.append(i[1])
+    elif score_1 == score_2:
+        if win_1:
+            win_1 = False
+            time_e_1.append(i[1])
+        if win_2:
+            win_2 = False
+            time_e_2.append(i[1])
+
+if len(time_s_1) != len(time_e_1):
+    time_e_1.append('48:00')
+if len(time_s_2) != len(time_e_2):
+    time_e_2.append('48:00')
+
+if time_s_1:
+    for i in range(len(time_s_1)):
+        s_time = time_s_1[i].split(':')
+        s_m, s_s = int(s_time[0]), int(s_time[1])
+        e_time = time_e_1[i].split(':')
+        e_m, e_s = int(e_time[0]), int(e_time[1])
+        total_1 += ((e_m * 60) + e_s) - ((s_m * 60) + s_s)
+
+if time_s_2:
+    for i in range(len(time_s_2)):
+        s_time = time_s_2[i].split(':')
+        s_m, s_s = int(s_time[0]), int(s_time[1])
+        e_time = time_e_2[i].split(':')
+        e_m, e_s = int(e_time[0]), int(e_time[1])
+        total_2 += ((e_m * 60) + e_s) - ((s_m * 60) + s_s)
+
+print(str(total_1 // 60).zfill(2) + ":" + str(total_1 % 60).zfill(2))
+print(str(total_2 // 60).zfill(2) + ":" + str(total_2 % 60).zfill(2))
