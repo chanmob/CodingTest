@@ -1,0 +1,21 @@
+import sys
+import heapq
+
+input = sys.stdin.readline
+
+n = int(input())
+
+ramen = []
+
+for _ in range(n):
+    ramen.append(list(map(int, input().split())))
+
+ramen.sort(key = lambda x : [x[0], -x[1]])
+heap = []
+
+for i in range(len(ramen)):
+    heapq.heappush(heap, ramen[i][1])
+    if len(heap) > ramen[i][0]:
+        heapq.heappop(heap)
+
+print(sum(heap))
