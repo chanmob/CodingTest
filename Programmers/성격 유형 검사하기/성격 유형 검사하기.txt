@@ -1,0 +1,41 @@
+def solution(survey, choices):
+    kakao = {'R' : 0, 'T' : 0, 'C' : 0, 'F' : 0, 'J' : 0, 'M' : 0, 'A' : 0, 'N' : 0}
+    answer = ''
+    
+    def Choice(sur, choice):
+        c = choice - 4
+        category = sur[0]
+        score = 0
+        if c < 0:
+            category = sur[0]
+            score = abs(c)
+        elif c > 0:
+            category = sur[1]
+            score = abs(c)
+        return category, score
+    
+    for i in range(len(survey)):
+        c, s = Choice(survey[i], choices[i])
+        kakao[c] += s
+        
+    if kakao['R'] >= kakao['T']:
+        answer += 'R'
+    else:
+        answer += 'T'
+
+    if kakao['C'] >= kakao['F']:
+        answer += 'C'
+    else:
+        answer += 'F'
+        
+    if kakao['J'] >= kakao['M']:
+        answer += 'J'
+    else:
+        answer += 'M'
+        
+    if kakao['A'] >= kakao['N']:
+        answer += 'A'
+    else:
+        answer += 'N'
+    
+    return answer
