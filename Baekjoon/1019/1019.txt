@@ -1,0 +1,26 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+
+pages = [0] * 10
+factor = 1
+
+while factor <= n:
+    lower_numbers = n - (n // factor) * factor
+    current_digit = (n // factor) % 10
+    higher_numbers = n // (factor * 10)
+
+    for i in range(10):
+        pages[i] += higher_numbers * factor
+        if i < current_digit:
+            pages[i] += factor
+        elif i == current_digit:
+            pages[i] += lower_numbers + 1
+
+    pages[0] -= factor
+    
+    factor *= 10
+    
+print(*pages)
