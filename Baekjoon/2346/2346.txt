@@ -1,0 +1,21 @@
+import sys
+from collections import deque
+
+n = int(input())
+arr = list(map(int, input().split()))
+ballons = deque()
+for i in range(n):
+    ballons.append([i + 1, arr[i]])
+
+result = []
+
+for _ in range(n):
+    idx, m = ballons.popleft()
+    result.append(idx)
+
+    if m > 0:
+        ballons.rotate(-(m - 1))
+    elif m < 0:
+        ballons.rotate(-m)
+    
+print(*result)
