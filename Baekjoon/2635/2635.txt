@@ -1,0 +1,32 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+result = []
+
+for i in range(1, n + 1):
+    temp = n
+    before = i
+    r = []
+    r.append(temp)
+    r.append(before)
+    while temp > 0:
+        temp2 = temp - before
+        temp = before
+        before = temp2
+        if temp2 < 0:
+            break
+        r.append(temp2)
+    result.append(r)
+
+max_len = 0
+target = []
+for r in result:
+    len_r = len(r)
+    if max_len < len_r:
+        max_len = len_r
+        target = r
+        
+print(max_len)
+print(*target)
