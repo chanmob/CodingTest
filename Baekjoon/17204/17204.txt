@@ -1,0 +1,26 @@
+import sys
+
+input = sys.stdin.readline
+
+n, k = map(int, input().split())
+graph = []
+
+for i in range(n):
+    graph.append(int(input()))
+    
+start = 0
+result = 0
+find = False
+
+for i in range(n):
+    target = graph[start]
+    result += 1
+    if target == k:
+        find = True
+        break
+    start = target
+
+if find:
+    print(result)
+else:
+    print(-1)
