@@ -1,0 +1,30 @@
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+
+MAX = 100000
+n, k = map(int, input().split())
+
+queue = deque()
+queue.append(n)
+visited = [0] * (MAX+1)
+
+while queue:
+    d = queue.popleft()
+    if d == k:
+        break
+    for nd in (2 * d, d - 1, d + 1):
+        if nd < 0 or nd > MAX:
+            continue
+        if visited[nd]:
+            continue
+
+        if nd == 2 * d:
+            visited[nd] = visited[d]
+        else:
+            visited[nd] = visited[d] + 1
+
+        queue.append(nd)
+
+print(visited[k])
