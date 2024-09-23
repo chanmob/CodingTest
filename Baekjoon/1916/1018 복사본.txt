@@ -1,0 +1,32 @@
+import sys
+import heapq
+
+input = sys.stdin.readline
+
+n = int(input())
+m = int(input())
+graph = [[] for _ in range(n + 1)]
+
+for _ in range(m):
+    a, b, c = map(int, input().split())
+    graph[a].append((b, c))
+    
+s, e = map(int, input().split())
+costs = [1e9 for _ in range(n + 1)]
+heap = []
+costs[s] = 0
+heapq.heappush(heap, [s, 0])
+    
+while heap:
+    d, v = heapq.heappop(heap)
+    if costs[d] < v:
+        continue
+    for nd, nv in graph[d]:
+        s = v + nv
+        if s >= costs[nd]:
+            continue
+        
+        costs[nd] = s
+        heapq.heappush(heap, [nd, s])
+        
+print(costs[e])
