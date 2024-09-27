@@ -1,0 +1,30 @@
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+
+f, s, g, u, d = map(int, input().split())
+
+visited = [0 for _ in range(f + 1)]
+mv = [u, -d]
+
+def bfs(start):
+    queue = deque()
+    queue.append(start)
+    result = 0
+    visited[start] = 1
+
+    while queue:
+        q = queue.popleft()
+        if q == g:
+            return visited[q] - 1
+        
+        for i in range(2):
+            n = q + mv[i]
+            if 1 <= n <= f and visited[n] == 0:
+                visited[n] = visited[q] + 1
+                queue.append(n)
+    
+    return "use the stairs"
+    
+print(bfs(s))
