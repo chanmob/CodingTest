@@ -1,0 +1,30 @@
+import sys
+from itertools import combinations
+
+input = sys.stdin.readline
+
+n = int(input())
+
+people = [i for i in range(n)]
+s = [[0] for _ in range(n)]
+
+for i in range(n) :
+    s[i] = list(map(int, input().split()))
+
+teams = list(combinations(people, int(n/2)))
+result = 100 * n * n
+for team in teams:
+    team_A = 0
+    team_B = 0
+    for i in team:
+        for j in team:
+            team_A += s[i][j]
+    not_team = [x for x in range(n) if x not in team]
+    for i in not_team :
+        for j in not_team :
+            team_B += s[i][j]
+    
+    if result > abs(team_A - team_B) :
+        result = abs(team_A - team_B)
+
+print(result)
