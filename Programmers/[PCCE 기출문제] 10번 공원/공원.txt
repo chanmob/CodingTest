@@ -1,0 +1,23 @@
+def solution(mats, park):
+    len_x = len(park[0])
+    len_y = len(park)
+    
+    mats.sort(reverse = True)
+    
+    def place(x, y, k):
+        if x + k > len_x or y + k > len_y:
+            return False
+        else:
+            for i in range(x, x + k):
+                for j in range(y, y + k):
+                    if park[j][i] != "-1":
+                        return False
+            return True
+        
+    for k in mats:
+        for i in range(len_x - k + 1):
+            for j in range(len_y - k + 1):
+                if place(i, j, k):
+                    return k
+    
+    return -1
