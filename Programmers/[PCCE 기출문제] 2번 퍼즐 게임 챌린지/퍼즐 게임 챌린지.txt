@@ -1,0 +1,57 @@
+def solution(diffs, times, limit):
+    def complete(level):
+        total_time = 0
+        time_prev = 0
+        for i in range(len(diffs)):
+            time_cur = times[i]
+            if diffs[i] <= level:
+                total_time += time_cur
+            else:
+                mistake = diffs[i] - level
+                total_time += mistake * (time_cur + time_prev) + time_cur
+            time_prev = time_cur
+            if total_time > limit:
+                return False
+        return True
+    
+    left, right = 1, max(diffs)
+    answer = right
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if complete(mid):
+            answer = mid
+            right = mid - 1
+        else:
+            left = mid + 1
+            
+    return answerdef solution(diffs, times, limit):
+    def complete(level):
+        total_time = 0
+        time_prev = 0
+        for i in range(len(diffs)):
+            time_cur = times[i]
+            if diffs[i] <= level:
+                total_time += time_cur
+            else:
+                mistake = diffs[i] - level
+                total_time += mistake * (time_cur + time_prev) + time_cur
+            time_prev = time_cur
+            if total_time > limit:
+                return False
+        return True
+    
+    left, right = 1, max(diffs)
+    answer = right
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if complete(mid):
+            answer = mid
+            right = mid - 1
+        else:
+            left = mid + 1
+            
+    return answer
