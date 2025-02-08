@@ -1,0 +1,23 @@
+def solution(files):
+    def head(file):
+        head = ''
+        for f in file:
+            if f.isdigit():
+                break
+            head += f
+        return head.lower()
+    
+    def number(file):
+        number = ''
+        check = False
+        for f in file:
+            if f.isdigit():
+                check = True
+                number += f
+            elif check:
+                break
+        return int(number)
+    
+    files = sorted(files, key=lambda x: (head(x), int(number(x))))
+    
+    return files
